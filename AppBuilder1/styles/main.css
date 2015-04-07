@@ -1,0 +1,52 @@
+#kendouimobileapp .image-with-text img {
+    float: left;
+    margin-right: 15px;
+}
+
+#kendouimobileapp .button-block,
+#kendouimobileapp .block {
+    display: block;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+}
+
+#kendouimobileapp .button-submit {
+    background-color: #10c4b2;
+    color: white;
+}
+
+#kendouimobileapp .button-group {
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+
+#kendouimobileapp .button-block {
+    display: table-cell;
+}
+
+#kendouimobileapp .group-separator {
+    border: none;
+    background: transparent;
+}
+
+#kendouimobileapp .group-separator-header {
+    margin: 1em 0;
+}
+
+#kendouimobileapp .app-icon {
+    text-align: center;
+    margin: 3em 0;
+}
+
+#kendouimobileapp .view-title {
+    text-align: center;
+    font-weight: normal;
+}
+
+#kendouimobileapp .km-drawer-button:after,
+#kendouimobileapp .km-drawer-button:before {
+    content: '\e077';
+}

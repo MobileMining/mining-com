@@ -1,13 +1,27 @@
 {
   "type": "kendo-ui-mobile",
-  "isNew": true,
+  "name": "kendoUiMobileApp",
+  "navigation": "listmenu",
+  "views": [
+    {
+      "type": "view",
+      "name": "home",
+      "title": "Mining News",
+      "addToNavigation": true,
+      "components": [],
+      "icon": "home"
+    }
+  ],
+  "view": "home",
+  "skin": "flat",
   "dataProviders": [
     {
       "type": "dataProvider",
-      "title": "DefaultProvider",
       "name": "defaultProvider",
+      "title": "DefaultProvider",
       "source": "everlive",
       "everliveKey": "o5TbRF5RwyenKCve"
     }
-  ]
+  ],
+  "transition": "slide"
 }
