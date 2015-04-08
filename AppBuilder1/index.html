@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title></title>
+    <title>burg</title>
     <meta charset="utf-8">
     <link href="bower_components/kendo-ui-appbuilder-core/styles/kendo.mobile.all.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
@@ -11,7 +11,7 @@
     <script src="cordova.js"></script>
 
     <script src="bower_components/kendo-ui-appbuilder-core/js/jquery.min.js"></script>
-    <script src="bower_components/kendo-ui-appbuilder-core/js/kendo.mobile.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2015.1.318/js/kendo.all.min.js"></script>
     <script src="bower_components/everlive/min/everlive.all.min.js"></script>
     <script src="app.js"></script>
     <script src="data/defaultProvider.js"></script>
@@ -21,9 +21,7 @@
     <div data-role="layout" data-id="main">
         <header data-role="header">
             <div data-role="navbar">
-                <a data-role="backbutton" data-align="left">Back</a>
                 <span data-role="view-title"></span>
-                <a data-align="right" data-role="button" class="nav-button" href="#/">IndexDooDoo</a>
             </div>
         </header>
 
@@ -33,12 +31,88 @@
         </footer>
     </div> 
 
-    <div data-role="view" data-layout="main" data-title="Index">
-        <ul id="navigation-container" data-role="listview" data-style="inset">
-            <li><a href="home/view.html" data-icon="home">home</a></li>
-        </ul>
+
+<div data-role="modalview" id="modalview-login" style="width: 95%; height: 95%;">
+    <div data-role="header">
+        <div data-role="navbar">
+            <span>Article</span>
+            <a data-click="closeModalViewLogin" data-role="button" data-align="right">Back</a>
+        </div>
     </div>
-    <script src="home/index.js"></script>
+
+    <div data-role="listview" data-style="inset">
+        <h1 id="article-title"></h1>
+        <span id="byline">Published by <span id="article-author"></span> on <span id="article-date"></span></span>
+        <img id="article-thumbnail" src="" width="300px" />
+        <div id="article-content">
+        </div>
+    </div>
+    
+    <div data-role="footer">
+        <div data-role="navbar">
+            <a data-click="closeModalViewLogin" data-role="button" data-align="center">Back to headlines</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeModalViewLogin() {
+        $("#modalview-login").data("kendoMobileModalView").scroller.reset();
+        $("#modalview-login").kendoMobileModalView("close");
+    }
+</script>
+
+<div data-role="view" data-title="MINING.com Headlines" data-layout="main" data-model="app.models.home">
+    <div id="example">
+
+        <div class="demo-section">
+            <ul id="listView"></ul>
+        </div>
+
+        <script type="text/x-kendo-template" id="template">
+            <li class="headline">
+                <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
+                <span class="headline-title">#:title#</span>
+                <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
+                <span class="headline-summary hidden-data">#=fulltext#</span>
+                <span class="headline-author hidden-data">#=author#</span>
+            </li>
+        </script>
+
+        <style>
+            .headline .hidden-data { display: none; }
+            .headline .headline-thumbnail { float: left; margin-right: 1em; }
+        </style>
+
+        <script>
+            $(function() {
+                var dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read: {
+                            url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
+                            dataType: "jsonp"
+                        }
+                    }
+                });
+
+                $("#listView").kendoMobileListView({
+                    dataSource: dataSource,
+                    template: kendo.template($("#template").html()),
+                    click: function(e) {
+                        $("#modalview-login #article-title").text($(".headline-title",e.item).text());
+                        $("#modalview-login #article-author").text($(".headline-author",e.item).text());
+                        $("#modalview-login #article-date").text($(".headline-date",e.item).text());
+                        $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
+                        $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
+                        $("#modalview-login").kendoMobileModalView("open");
+                    }
+                });
+
+            });
+        </script>
+    </div>
+</div>
+    
 </body>
 
 </html>
