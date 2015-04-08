@@ -1,0 +1,40 @@
+{
+  "ProjectName": "Mining News from MINING.com",
+  "ProjectGuid": "b1273674-0402-44be-8fe4-b4c200875c93",
+  "projectVersion": 1,
+  "AppIdentifier": "com.spreednews.glaciermediagroup.miningdotcom",
+  "DisplayName": "Mining News from MINING.com",
+  "Author": "InfoMine Inc",
+  "Description": "Keep up-to-date with the latest mining, silver and gold news using the iPhone app from MINING.com. Coverage includes precious metals, commentary, mining education, and suppliers and equipment.\n\nFind current news on mining company activities and market information, including:\n• Drill results\n• Exploration and mine development\n• Financings and stock performance\n• Mergers and acquisitions\n\nLook up spot prices for precious metals, and follow currency changes and market data from all the world’s major exchanges. You can enjoy commentary from leading analysts and newsletter writers. You’ll also find news about major commodities:\n• Gold, silver, platinum, palladium and other precious metals\n• Copper, lead, nickel, zinc and other base metals\n• Coal, uranium and other energy minerals\n• Iron ore, oil sands, rare earth and diamonds\n\nThe app allows you to share the latest news with built-in social media tools like Twitter and Facebook. You can also email articles you like or star them to read later.",
+  "BundleVersion": "5.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.5.0",
+  "AndroidPermissions": [],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{66cc26dc-4657-476c-8653-27ce66106428}",
+  "WP8ProductID": "{b87a8f7e-a5d7-426b-96b4-ede7b0eed2a0}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.AppBuilder1",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
