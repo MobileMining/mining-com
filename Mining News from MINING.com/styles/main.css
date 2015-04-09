@@ -50,3 +50,13 @@
 #kendouimobileapp .km-drawer-button:before {
     content: '\e077';
 }
+
+/* MINING.com CSS */
+.headline .hidden-data { 
+    display: none; 
+}
+.headline .headline-thumbnail { 
+    float: left; 
+    margin-right: 1em;
+}
+/* /MINING.com CSS */

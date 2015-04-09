@@ -40,7 +40,12 @@
         </div>
     </div>
 
-    <div data-role="listview" data-style="inset">
+    <div data-role="li
+                    
+                    
+                    
+                    
+                    stview" data-style="inset">
         <h1 id="article-title"></h1>
         <span id="byline">Published by <span id="article-author"></span> on <span id="article-date"></span></span>
         <img id="article-thumbnail" src="" width="300px" />
@@ -49,8 +54,8 @@
     </div>
     
     <div data-role="footer">
-        <div data-role="navbar">
-            <a data-click="closeModalViewLogin" data-role="button" data-align="center">Back to headlines</a>
+        <div data-role="navbar" style="height: 2rem">
+            <a data-click="closeModalViewLogin" data-role="button" data-align="center" style="font-size: .7rem; padding: .8rem">Back to headlines</a>
         </div>
     </div>
 </div>
@@ -61,55 +66,63 @@
         $("#modalview-login").kendoMobileModalView("close");
     }
 </script>
+<div class="hero" data-role="view" data-layout="main" data-model="app.models.home" >
+    <img src="http://www.mining.com/wp-content/themes/MININGdotcomV1/images/headers/MINING.comLogo_rev20130820.gif" width="320px" />
 
-<div data-role="view" data-title="MINING.com Headlines" data-layout="main" data-model="app.models.home">
-    <div id="example">
-
-        <div class="demo-section">
-            <ul id="listView"></ul>
+    <div>
+        <div data-role="header">
+            <div data-role="navbar">
+                Global Mining Headlines
+            </div>
         </div>
 
-        <script type="text/x-kendo-template" id="template">
-            <li class="headline">
-                <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
-                <span class="headline-title">#:title#</span>
-                <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
-                <span class="headline-summary hidden-data">#=fulltext#</span>
-                <span class="headline-author hidden-data">#=author#</span>
-            </li>
-        </script>
+        <div id="example">
 
-        <style>
-            .headline .hidden-data { display: none; }
-            .headline .headline-thumbnail { float: left; margin-right: 1em; }
-        </style>
+            <div class="demo-section">
+                <ul id="listView"></ul>
+            </div>
 
-        <script>
-            $(function() {
-                var dataSource = new kendo.data.DataSource({
-                    transport: {
-                        read: {
-                            url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
-                            dataType: "jsonp"
+            <script type="text/x-kendo-template" id="template">
+                <li class="headline">
+                    <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
+                    <span class="headline-title">#:title#</span>
+                    <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
+                    <span class="headline-summary hidden-data">#=fulltext#</span>
+                    <span class="headline-author hidden-data">#=author#</span>
+                </li>
+            </script>
+
+            <style>
+
+            </style>
+
+            <script>
+                $(function() {
+                    var dataSource = new kendo.data.DataSource({
+                        transport: {
+                            read: {
+                                url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
+                                dataType: "jsonp"
+                            }
                         }
-                    }
-                });
+                    });
 
-                $("#listView").kendoMobileListView({
-                    dataSource: dataSource,
-                    template: kendo.template($("#template").html()),
-                    click: function(e) {
-                        $("#modalview-login #article-title").text($(".headline-title",e.item).text());
-                        $("#modalview-login #article-author").text($(".headline-author",e.item).text());
-                        $("#modalview-login #article-date").text($(".headline-date",e.item).text());
-                        $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
-                        $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
-                        $("#modalview-login").kendoMobileModalView("open");
-                    }
-                });
+                    $("#listView").kendoMobileListView({
+                        dataSource: dataSource,
+                        template: kendo.template($("#template").html()),
+                        click: function(e) {
+                            $("#modalview-login #article-title").text($(".headline-title",e.item).text());
+                            $("#modalview-login #article-author").text($(".headline-author",e.item).text());
+                            $("#modalview-login #article-date").text($(".headline-date",e.item).text());
+                            $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
+                            $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
+                            $("#modalview-login").kendoMobileModalView("open");
+                        }
+                    });
 
-            });
-        </script>
+                });
+            </script>
+        </div>
     </div>
 </div>
     
