@@ -6,8 +6,8 @@
 #kendouimobileapp .button-block,
 #kendouimobileapp .block {
     display: block;
-    margin: 1em;
-    padding: 1em;
+    margin: 2.5em;
+    padding: 2.5em;
     text-align: center;
 }
 
@@ -52,11 +52,9 @@
 }
 
 /* MINING.com CSS */
-.headline .hidden-data { 
-    display: none; 
-}
-.headline .headline-thumbnail { 
-    float: left; 
-    margin-right: 1em;
-}
+
 /* /MINING.com CSS */
+
+.app-header { 
+ background: #333132
+}

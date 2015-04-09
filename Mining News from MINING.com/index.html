@@ -15,13 +15,22 @@
     <script src="bower_components/everlive/min/everlive.all.min.js"></script>
     <script src="app.js"></script>
     <script src="data/defaultProvider.js"></script>
+    <style>
+    .headline .hidden-data { 
+    display: none; 
+    }
+    .headline .headline-thumbnail { 
+        float: left; 
+        margin-right: 1em;
+    }
+    </style>
 </head>
 
 <body id="kendouimobileapp">
     <div data-role="layout" data-id="main">
         <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
+            <div class="app-header">
+                <img src="images/sectionlogo@2x.png" width="100%" />
             </div>
         </header>
 
@@ -32,75 +41,65 @@
     </div> 
 
 
-<div data-role="modalview" id="modalview-login" style="width: 95%; height: 95%;">
-    <div data-role="header">
-        <div data-role="navbar">
-            <span>Article</span>
-            <a data-click="closeModalViewLogin" data-role="button" data-align="right">Back</a>
-        </div>
-    </div>
-
-    <div data-role="listview" data-style="inset">
-        <h1 id="article-title"></h1>
-        <span id="byline">Published by <span id="article-author"></span> on <span id="article-date"></span></span>
-        <img id="article-thumbnail" src="" width="300px" />
-        <div id="article-content">
-        </div>
-    </div>
-    
-    <div data-role="footer">
-        <div data-role="navbar" style="height: 2rem">
-            <a data-click="closeModalViewLogin" data-role="button" data-align="center" style="font-size: .7rem; padding: .8rem">Back to headlines</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    function closeModalViewLogin() {
-        $("#modalview-login").data("kendoMobileModalView").scroller.reset();
-        $("#modalview-login").kendoMobileModalView("close");
-    }
-</script>
-<div class="hero" data-role="view" data-layout="main" data-model="app.models.home" >
-    <img src="/images/headers/sectionlogo@2x.png" width="100%" />
-
-    <div>
+    <div data-role="modalview" id="modalview-login" style="width: 100%; height: 100%">
         <div data-role="header">
             <div data-role="navbar">
-                Global Mining Headlines
+                <span>Article</span>
+                <a data-click="closeModalViewLogin" data-role="button" data-align="right">Back</a>
             </div>
         </div>
 
-        <div id="example">
+        <div data-role="listview" data-style="inset">
+            <h1 id="article-title"></h1>
+            <span id="byline">Published by <span id="article-author"></span> on <span id="article-date"></span></span>
+            <img id="article-thumbnail" src="" style="min-width: 300px; width: 100%;" />
+            <div id="article-content">
+            </div>
+        </div>
 
-            <div class="demo-section">
-                <ul id="listView"></ul>
+    </div>
+
+    <script>
+        function closeModalViewLogin() {
+            $("#modalview-login").data("kendoMobileModalView").scroller.reset();
+            $("#modalview-login").kendoMobileModalView("close");
+        }
+    </script>
+    <div data-role="view" data-layout="main" data-model="app.models.home" >
+
+        <div>
+            <div data-role="header">
+                <div data-role="navbar">
+                    Global Mining Headlines
+                </div>
             </div>
 
-            <script type="text/x-kendo-template" id="template">
-                <li class="headline">
-                    <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
-                    <span class="headline-title">#:title#</span>
-                    <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
-                    <span class="headline-summary hidden-data">#=fulltext#</span>
-                    <span class="headline-author hidden-data">#=author#</span>
-                </li>
-            </script>
+            <div id="example">
 
-            <style>
+                <div class="demo-section">
+                    <ul id="listView"></ul>
+                </div>
 
-            </style>
+                <script type="text/x-kendo-template" id="template">
+                    <span class="headline">
+                        <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
+                        <span class="headline-title">#:title#</span>
+                        <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
+                        <span class="headline-summary hidden-data">#=fulltext#</span>
+                        <span class="headline-author hidden-data">#=author#</span>
+                    </span>
+                </script>
 
-            <script>
-                $(function() {
-                    var dataSource = new kendo.data.DataSource({
-                        transport: {
-                            read: {
-                                url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
-                                dataType: "jsonp"
+                <script>
+                    $(function() {
+                        var dataSource = new kendo.data.DataSource({
+                            transport: {
+                                read: {
+                                    url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
+                                    dataType: "jsonp"
+                                }
                             }
-                        }
-                    });
+                        });
 
                     $("#listView").kendoMobileListView({
                         dataSource: dataSource,
