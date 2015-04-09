@@ -122,6 +122,13 @@
                         });
 
                     };
+                    
+                    $(function(){
+                        $("body").on("click",'a[data-rel="external"]', function(e) {
+                            e.preventDefault();
+                            window.open($(this).attr("href"));
+                        });
+                    });
                 </script>
         </div>
     </div>  
