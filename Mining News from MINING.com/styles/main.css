@@ -1,3 +1,6 @@
+body {
+    font-family: 'Lato', sans-serif !important;
+}
 #kendouimobileapp .image-with-text img {
     float: left;
     margin-right: 15px;
@@ -52,9 +55,7 @@
 }
 
 /* MINING.com CSS */
-
-/* /MINING.com CSS */
-
+/* Header Styles */
 .app-header { 
  background: #333132
 }
@@ -64,9 +65,24 @@
     display:block;
     padding: 8px
 }
-.app-header-button {
-    color: #FFF; 
+.headline .hidden-data { 
+    display: none; 
 }
+.headline .headline-thumbnail { 
+    float: right; 
+    margin-left: 1rem;
+}
+/* /Header Styles */
+/* Article Styles */
+.km-listinset { 
+    margin-top: .2rem;
+}
+.km-content h1 { 
+    margin: 0;
+    font-size: 1.4rem
+}
+
+/* /Article Styles */
 .clearfix:after {
     clear: both;
     content: ".";
@@ -81,3 +97,4 @@
     display: block;
 }
 
+/* /MINING.com CSS */
