@@ -58,3 +58,26 @@
 .app-header { 
  background: #333132
 }
+.app-header-title {
+    line-height: 0; 
+    font-size: 0;
+    display:block;
+    padding: 8px
+}
+.app-header-button {
+    color: #FFF; 
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+.clearfix {
+    display: block;
+}
+
