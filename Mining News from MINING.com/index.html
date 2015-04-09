@@ -65,7 +65,7 @@
             $("#modalview-login").kendoMobileModalView("close");
         }
     </script>
-    <div data-role="view" data-layout="main" data-model="app.models.home" >
+    <div data-role="view" data-layout="main" data-init="mobileListViewPullToRefresh">
 
         <div>
             <div data-role="header">
@@ -91,31 +91,33 @@
                 </script>
 
                 <script>
-                    $(function() {
+                    function mobileListViewPullToRefresh(e) {
                         var dataSource = new kendo.data.DataSource({
                             transport: {
                                 read: {
                                     url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
-                                    dataType: "jsonp"
+                                    dataType: "jsonp",
+                                    cache: true
                                 }
                             }
                         });
 
-                    $("#listView").kendoMobileListView({
-                        dataSource: dataSource,
-                        template: kendo.template($("#template").html()),
-                        click: function(e) {
-                            $("#modalview-login #article-title").text($(".headline-title",e.item).text());
-                            $("#modalview-login #article-author").text($(".headline-author",e.item).text());
-                            $("#modalview-login #article-date").text($(".headline-date",e.item).text());
-                            $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
-                            $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
-                            $("#modalview-login").kendoMobileModalView("open");
-                        }
-                    });
+                        $("#listView").kendoMobileListView({
+                            dataSource: dataSource,
+                            template: kendo.template($("#template").html()),
+                            pullToRefresh: true,
+                            click: function(e) {
+                                $("#modalview-login #article-title").text($(".headline-title",e.item).text());
+                                $("#modalview-login #article-author").text($(".headline-author",e.item).text());
+                                $("#modalview-login #article-date").text($(".headline-date",e.item).text());
+                                $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
+                                $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
+                                $("#modalview-login").kendoMobileModalView("open");
+                            }
+                        });
 
-                });
-            </script>
+                    };
+                </script>
         </div>
     </div>
 </div>
