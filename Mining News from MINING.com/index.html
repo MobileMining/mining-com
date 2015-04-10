@@ -9,23 +9,11 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
     <!-- cordova script (this will be a 404 during development if served with `grunt serve`) -->
     <script src="cordova.js"></script>
-
     <script src="bower_components/kendo-ui-appbuilder-core/js/jquery.min.js"></script>
     <script src="js/kendo.all.min.js"></script>
     <script src="bower_components/everlive/min/everlive.all.min.js"></script>
     <script src="app.js"></script>
     <script src="data/defaultProvider.js"></script>
-    <style>
-    .headline .hidden-data { 
-    	display: none; 
-    }
-    .headline .headline-thumbnail { 
-        float: right;  
-        margin-left: 1rem;
-    }
-    
-    </style>
-    
 </head>
 
 <body id="kendouimobileapp">
@@ -35,12 +23,9 @@
                 <div class="app-header clearfix">
                     <span data-role="view-title" class="app-header-title"><img src="images/sectionlogo@2x.png" height="30px" /></span>
                 </div>
-                
             </div>
         </header>
-        
         <!-- application views will be rendered here -->
-
         <footer data-role="footer">
         </footer>
     </div> 
@@ -73,14 +58,12 @@
         }
     </script>
     <div data-role="view" data-layout="main" data-init="mobileListViewPullToRefresh">
-
         <div>
             <div data-role="header">
                 <div data-role="navbar">
                     Global Mining Headlines
                 </div>
             </div>
-
             <div id="example">
 
                 <div class="demo-section">
@@ -108,7 +91,6 @@
                                 }
                             }
                         });
-
                         $("#listView").kendoMobileListView({
                             dataSource: dataSource,
                             template: kendo.template($("#template").html()),
@@ -127,9 +109,7 @@
                                 $("#modalview-login").kendoMobileModalView("open");
                             }
                         });
-
                     };
-                    
                     $(function(){
                         $("body").on("click",'a[data-rel="external"]', function(e) {
                             e.preventDefault();
