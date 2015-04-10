@@ -73,15 +73,52 @@ body {
     margin-left: 1rem;
 }
 /* /Header Styles */
+/* News River Styles */
+.headline-title {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+    font-weight: bold;
+    display: block
+}
+.headline-date {
+    display: block;
+    font-size: .8rem
+}
+/* /News River Styles
 /* Article Styles */
 .km-listinset { 
     margin-top: .2rem;
 }
 .km-content h1 { 
-    margin: 0;
+    margin: 1rem 0 0;
     font-size: 1.4rem
 }
-
+.byline { 
+    display: block;
+    font-size: .8rem;
+    padding: .4rem 0 1.5rem;
+}
+.byline #article-author {
+    font-weight: bold
+}
+.headline-summary p {
+    margin-left: 0;
+    margin-right: 0;
+}
+.article-thumbnail {
+    display: block;
+    max-width: 100%;
+    min-width: 300px;
+    width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
 /* /Article Styles */
 .clearfix:after {
     clear: both;
