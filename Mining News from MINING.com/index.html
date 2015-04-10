@@ -35,7 +35,7 @@
     </div> 
 
 
-    <div data-role="modalview" id="modalview-login" style="width: 100%; height: 100%">
+    <div data-role="modalview" id="modalview-login" style="width: 100%; height: 100%; display:none;">
         <div data-role="header">
             <div data-role="navbar">
                 <span>Article</span>
@@ -43,15 +43,17 @@
             </div>
         </div>
 
-        <div data-role="listview" data-style="inset">
-            <h1 id="article-title"></h1>
-            <span id="byline" class="byline">Published by <span id="article-author"></span> on <span id="article-date"></span></span>
-            <img id="article-thumbnail" class="article-thumbnail" src="" />
-            <div id="article-content">
-            </div>
+        <div data-role="listview" data-style="inset" id="article-main">
         </div>
 
     </div>
+    
+    <script type="text/x-kendo-template" id="article-template">
+        <h1 id="article-title">#:title#</h1>
+        <span id="byline" class="byline">Published by <span id="article-author">#:author#</span> on <span id="article-date">#:pubDate#</span></span>
+        <img id="article-thumbnail" class="article-thumbnail" src="#=thumbnail#" />
+        <div id="article-content">#=content#</div>
+    </script>
 
     <script>
         function closeModalViewLogin() {
@@ -101,11 +103,16 @@
                             template: kendo.template($("#template").html()),
                             pullToRefresh: true,
                             click: function(e) {
-                                $("#modalview-login #article-title").text($(".headline-title",e.item).text());
-                                $("#modalview-login #article-author").text($(".headline-author",e.item).text());
-                                $("#modalview-login #article-date").text($(".headline-date",e.item).text());
-                                $("#modalview-login #article-thumbnail").attr('src', $(".headline-thumbnail",e.item).attr('src'));
-                                $("#modalview-login #article-content").html($(".headline-summary",e.item).clone());
+                                var data = {
+                                    title: $(".headline-title",e.item).text(),
+                                    author: $(".headline-author",e.item).text(),
+                                    pubDate: $(".headline-date",e.item).text(),
+                                    thumbnail: $(".headline-thumbnail",e.item).attr('src'),
+                                    content: $(".headline-summary",e.item).html()
+                                };
+                                var template = kendo.template($("#article-template").html());
+                                var result = template(data);
+                                $("#article-main").html(result);
                                 $("#modalview-login").kendoMobileModalView("open");
                             }
                         });
