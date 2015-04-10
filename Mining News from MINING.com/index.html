@@ -72,7 +72,7 @@
             $("#modalview-login").kendoMobileModalView("close");
         }
     </script>
-    <div data-role="view" data-layout="main" data-init="mobileListViewPullToRefresh">
+    <div data-role="view" data-layout="main" data-init="mobileListViewPullToRefresh" data-reload="false">
 
         <div>
             <div data-role="header">
@@ -88,31 +88,63 @@
                 </div>
 
                 <script type="text/x-kendo-template" id="template">
-                    <span class="headline">
+					<span class="headline">
                         <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
                         <span class="headline-title">#:title#</span>
                         <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
                         <span class="headline-summary hidden-data">#=fulltext#</span>
                         <span class="headline-author hidden-data">#=author#</span>
-                    </span>
+					</span>
                 </script>
 
                 <script>
+					var dataSource;
+					
                     function mobileListViewPullToRefresh(e) {
-                        var dataSource = new kendo.data.DataSource({
+                        dataSource = new kendo.data.DataSource({
                             transport: {
                                 read: {
                                     url: "http://www.mining.com/?feed=mobileapp&callback=kendo",
                                     dataType: "jsonp",
                                     cache: true
                                 }
-                            }
+                            },
+							schema: {
+								mode: {
+									id: "id",
+									fields: {
+										id: "id",
+										title: "title",
+										author: "author",
+										pubDate: "pubDate",
+										fulltext: "fulltext"
+									}
+								}
+							}
                         });
 
                         $("#listView").kendoMobileListView({
                             dataSource: dataSource,
                             template: kendo.template($("#template").html()),
                             pullToRefresh: true,
+							click: function(e) {
+								var itemUID = $(e.target).data("uid");
+                                var data = {
+                                    title: $(".headline-title",e.item).text(),
+                                    author: $(".headline-author",e.item).text(),
+                                    pubDate: $(".headline-date",e.item).text(),
+                                    thumbnail: $(".headline-thumbnail",e.item).attr('src'),
+                                    content: $(".headline-summary",e.item).html()
+                                };
+                                var template = kendo.template($("#article-template").html());
+                                var result = template(data);
+                                $("#articleView-container").html(result);
+								$("a", $("#articleView-container")).on("click", function(e) {
+									e.preventDefault();
+									window.open($(this).attr("href"), '_blank', 'location=yes');
+								});
+								kendo.mobile.application.navigate("#articleView?UID=" + itemUID);
+							}/*
                             click: function(e) {
                                 var data = {
                                     title: $(".headline-title",e.item).text(),
@@ -125,20 +157,41 @@
                                 var result = template(data);
                                 $("#article-main").html(result);
                                 $("#modalview-login").kendoMobileModalView("open");
-                            }
+                            }*/
                         });
 
                     };
+					
+					function articleHide(e) {
+            			e.view.scroller.reset();
+					}
+					
+					function articleShow(e) {
+						// var eUID = e.view.params.UID;
+						// if(!eUID) return;
+						
+						// var Entity = dataSource.getByUid(eUID);
+						// if(!Entity) return;
+						// Entity = kendo.observable({title: "My title"});
+						// kendo.bind($("#article-title", Entity, kendo.mobile.ui));
+					}
                     
                     $(function(){
-                        $("body").on("click",'a[data-rel="external"]', function(e) {
-                            e.preventDefault();
-                            window.open($(this).attr("href"));
-                        });
                     });
                 </script>
+			</div>
+		</div>
+    </div>
+	
+	<div data-role="view" id="articleView" data-show="articleShow" data-hide="articleHide" data-transition="slide">
+		<div data-role="header">
+            <div data-role="navbar">
+                <span>Article</span>
+            	<a class="nav-button" data-align="right" data-role="backbutton" id="cancel">Back</a>
+            </div>
         </div>
-    </div>  
+		<div id="articleView-container"></div>
+	</div>
 </body>
 
 </html>
