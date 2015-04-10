@@ -126,6 +126,7 @@ body {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
+
 /* /Article Styles */
 .clearfix:after {
     clear: both;
@@ -140,5 +141,11 @@ body {
 .clearfix {
     display: block;
 }
-
+#article-content iframe { 
+    max-width: 100%; 
+    width: 100%; 
+    height: auto
+}
 /* /MINING.com CSS */
+
+.km-on-ios.km-black-translucent-status-bar.km-app .km-header .km-navbar {padding-top: 0}
