@@ -15,6 +15,17 @@
     <script src="bower_components/everlive/min/everlive.all.min.js"></script>
     <script src="app.js"></script>
     <script src="data/defaultProvider.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','js/analytics.js','ga');
+		var ua = 'UA-4266436-7';
+		ga('create', ua, {'storage': 'none'/*,'clientId': device.uuid*/});
+		ga('set','checkProtocolTask',null);
+		ga('set','checkStorageTask',null);
+		ga('send', 'pageview', {'page': '/', 'title': 'Mining News'});
+	</script>
 </head>
 
 <body id="kendouimobileapp">
@@ -60,9 +71,10 @@
 					<span class="headline">
                         <img src="#=thumbnail.src#" height="60px" class="headline-thumbnail"/>
                         <span class="headline-title">#:title#</span>
-                        <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d")#</span>
+                        <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d, yyyy")#</span>
                         <span class="headline-summary hidden-data">#=fulltext#</span>
                         <span class="headline-author hidden-data">#=author#</span>
+						<span class="headline-path hidden-data">#=rel_path#</span>
 					</span>
                 </script>
 
@@ -112,6 +124,8 @@
                                     thumbnail: $(".headline-thumbnail",e.item).attr('src'),
                                     content: $(".headline-summary",e.item).html()
                                 };
+								
+	  							ga('send', 'pageview', {'page': $(".headline-path",e.item).text(), 'title': data.title});
                                 var template = kendo.template($("#article-template").html());
                                 var result = template(data);
                                 $("#articleView-container").html(result);
@@ -130,13 +144,6 @@
 					}
 										
 					function articleShow(e) {
-						// var eUID = e.view.params.UID;
-						// if(!eUID) return;
-						
-						// var Entity = dataSource.getByUid(eUID);
-						// if(!Entity) return;
-						// Entity = kendo.observable({title: "My title"});
-						// kendo.bind($("#article-title", Entity, kendo.mobile.ui));
 					}
 					
                 </script>
