@@ -93,6 +93,8 @@ body {
 }
 /* /News River Styles
 /* Article Styles */
+#articleView-container { margin: 0 1rem}
+#articleView-container p { margin-left: 0 ; margin-right: 0}
 .km-listinset { 
     margin-top: .2rem;
 }
@@ -114,17 +116,18 @@ body {
 }
 .article-thumbnail {
     display: block;
-    max-width: 100%;
+    max-width: 400px;
     min-width: 300px;
     width: 100%;
     height: auto;
-    padding: 4px;
+    padding: 1rem;
     line-height: 1.42857143; 
     background-color: #fff;
     border: 1px solid #ddd;
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    margin: 0 auto;
 }
 
 /* /Article Styles */
@@ -147,5 +150,5 @@ body {
     height: auto
 }
 /* /MINING.com CSS */
-
-.km-on-ios.km-black-translucent-status-bar.km-app .km-header .km-navbar {padding-top: 0}
+/* 
+.km-on-ios.km-black-translucent-status-bar.km-app .km-header .km-navbar {padding-top: 0} */
