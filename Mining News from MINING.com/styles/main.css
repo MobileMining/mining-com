@@ -129,7 +129,21 @@ body {
     transition: all .2s ease-in-out;
     margin: 0 auto;
 }
-
+#articleView-container p img {
+    display: block;
+    max-width: 100%;
+    min-width: 300px;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    line-height: 1.42857143; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+}
 /* /Article Styles */
 .clearfix:after {
     clear: both;
@@ -149,6 +163,27 @@ body {
     width: 100%; 
     height: auto
 }
+.wp-caption.aligncenter {
+    display: block;
+    max-width: 100%;
+    min-width: 300px;
+    width: 3rem;
+    height: auto;
+    padding: 1rem;
+    line-height: 1.42857143; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+    
+}
+.wp-caption.aligncenter img { 
+      max-width: 100% !important;
+      height: auto !important;
+}
+
 /* /MINING.com CSS */
 /* 
 .km-on-ios.km-black-translucent-status-bar.km-app .km-header .km-navbar {padding-top: 0} */
