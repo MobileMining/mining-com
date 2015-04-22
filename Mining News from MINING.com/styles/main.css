@@ -142,7 +142,7 @@ body {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-    margin: 0 auto;
+    margin: 0 auto 10px;
 }
 /* /Article Styles */
 .clearfix:after {
@@ -163,7 +163,7 @@ body {
     width: 100%; 
     height: auto
 }
-.wp-caption.aligncenter {
+.wp-caption {
     display: block;
     max-width: 100%;
     min-width: 300px;
@@ -176,12 +176,31 @@ body {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-    margin: 0 auto;
+    margin: 10px auto;
     
 }
-.wp-caption.aligncenter img { 
+.wp-caption img { 
       max-width: 100% !important;
       height: auto !important;
+}
+p.wp-caption-text {
+	margin: 10px 0 0;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+@media (min-width: 490px) {
+  	.headline .headline-thumbnail {
+	  	height: 100px;
+	}
+	.headline-title {
+		font-size: 1.4rem;
+		line-height: 1.6rem;
+		margin-bottom: 10px;
+	}
+	.headline-date {
+		font-size: 1rem;
+	}
 }
 
 /* /MINING.com CSS */

@@ -93,7 +93,7 @@
 
                 <script type="text/x-kendo-template" id="template">
 					<span class="headline">
-                        <img src="#= thumbnail.src #" height="60px" class="headline-thumbnail"/>
+                        <img src="#= thumbnail.src #" height="60px" class="headline-thumbnail" data-hide-feature="#= hide_feature_image #"/>
                         <span class="headline-title">#:title#</span>
                         <span class="headline-date">#:kendo.toString(kendo.parseDate(pubDate), "MMMM d, yyyy")#</span>
                         <span class="headline-summary hidden-data">#=fulltext#</span>
@@ -157,15 +157,21 @@
                                 var template = kendo.template($("#article-template").html());
                                 var result = template(data);
                                 $("#articleView-container").html(result);
+								
+								if( $(".headline-thumbnail", e.item).data("hide-feature") == true ) {
+									$("#article-thumbnail").hide();
+								}else{
+									$("#article-thumbnail").show();
+								}
 								$("a", $("#articleView-container")).on("click", function(e) {
 									e.preventDefault();
 									//window.open($(this).attr("href"), '_blank', 'location=yes');
-			if (kendo.support.mobileOS.android) {
-				navigator.app.loadUrl($(this).attr("href"), { openExternal:true } );
-			}
-			if (kendo.support.mobileOS.ios) {
-				window.open($(this).attr("href"), '_system');
-			} 
+									if (kendo.support.mobileOS.android) {
+										navigator.app.loadUrl($(this).attr("href"), { openExternal:true } );
+									}
+									if (kendo.support.mobileOS.ios) {
+										window.open($(this).attr("href"), '_system');
+									} 
 								});
 								app.mobileApp.navigate("#articleView?UID=" + itemUID);
 							}
@@ -178,13 +184,13 @@
 					}
 										
 					function articleShow(e) {
-						// $("#articleView-container").kendoTouch({
-						// 	enableSwipe: true,
-						// 	swipe: function (se) {
-						// 		if (se.direction == 'right' )
-						// 			app.mobileApp.navigate("#:back");
-						// 	}
-						// });
+						$("#articleView-container").kendoTouch({
+							enableSwipe: true,
+							swipe: function (se) {
+								if (se.direction == 'right' )
+									app.mobileApp.navigate("#:back");
+							}
+						});
 					}
 					
 					function articleInit(e) {
